@@ -16,7 +16,7 @@ $RootFolderLength = $RootFolder.Length
 $excel = New-Object -ComObject excel.application
 $excel.visible = $false
 
-Get-ChildItem -Path $RootFolder -Include $FileType -Recurse | ForEach-Object {
+Get-ChildItem -Path $RootFolder -Include $FileTypeOld -Recurse | ForEach-Object {
     $xls = $_
     $FileName = $xls.Name
     $Path = $xls.FullName
