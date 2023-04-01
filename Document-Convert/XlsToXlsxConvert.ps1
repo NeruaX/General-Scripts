@@ -1,5 +1,8 @@
-﻿#Setup
+#Select folder to convert From
 $RootFolder = "C:\temp\Convert\"
+#If documents should duplicate original in case it breaks
+$ArchiveXls = $True
+#Select folder to duplicate files to in case it breaks
 $ArchiveFolder = "C:\temp\Archive\"
 
 #No Changes below this point
@@ -20,15 +23,17 @@ Get-ChildItem -Path $RootFolder -Include $FileType -Recurse | ForEach-Object {
     #Setup Archive information
     $ArchiveSubFolder = $ArchiveFolder+$Path.Substring($RootFolderLength, $Path.Length-$RootFolderLength-$FileName.Length)
     $ArchivePath = $ArchiveSubFolder+$FileName
-
+    
+    if($ArchiveXls) {
     #Archives original
-    if(!(Test-Path -PathType Container $ArchiveSubFolder)) {
-         New-Item -item Directory -Force -Path $ArchiveSubFolder | Out-Null
-    }
-    if(!(Test-Path -PathType Leaf $ArchivePath)){
-        Copy-Item -Path $Path -Destination $ArchivePath
-    } else {
-        Write-Host "File: "$Path "Exists in archive already" 
+        if(-not(Test-Path -PathType Container $ArchiveSubFolder)) {
+            New-Item -item Directory -Force -Path $ArchiveSubFolder | Out-Null
+        }
+        if(-not(Test-Path -PathType Leaf $ArchivePath)){
+            Copy-Item -Path $Path -Destination $ArchivePath
+        } else {
+            Write-Host "File: "$Path "Exists in archive already" 
+        }
     }
 
     #Convert file
