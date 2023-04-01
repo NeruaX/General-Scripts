@@ -20,12 +20,12 @@ Get-ChildItem -Path $RootFolder -Include $FileTypeOld -Recurse | ForEach-Object 
     $xls = $_
     $FileName = $xls.Name
     $Path = $xls.FullName
-    #Setup Archive information
-    $ArchiveSubFolder = $ArchiveFolder+$Path.Substring($RootFolderLength, $Path.Length-$RootFolderLength-$FileName.Length)
-    $ArchivePath = $ArchiveSubFolder+$FileName
     
     if($ArchiveXls) {
-    #Archives original
+        #Setup Archive information
+        $ArchiveSubFolder = $ArchiveFolder+$Path.Substring($RootFolderLength, $Path.Length-$RootFolderLength-$FileName.Length)
+        $ArchivePath = $ArchiveSubFolder+$FileName
+        #Archives original
         if(-not(Test-Path -PathType Container $ArchiveSubFolder)) {
             New-Item -item Directory -Force -Path $ArchiveSubFolder | Out-Null
         }
