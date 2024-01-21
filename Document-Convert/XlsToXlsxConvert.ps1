@@ -6,6 +6,7 @@ $ArchiveXls = $True
 $ArchiveFolder = "C:\temp\Archive\"
 
 #No Changes below this point
+Add-Type -AssemblyName Microsoft.Office.Interop.Excel
 $xlFixedFormat = [Microsoft.Office.Interop.Excel.XlFileFormat]::xlOpenXMLWorkbook
 $xlFixedFormatMacro = [Microsoft.Office.Interop.Excel.XlFileFormat]::xlOpenXMLWorkbookMacroEnabled
 $FileTypeOld = "*xls"
