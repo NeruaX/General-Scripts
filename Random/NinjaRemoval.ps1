@@ -1,4 +1,7 @@
-#Products Path
+<#
+powershell.exe -command "Invoke-webrequest -uri https://raw.githubusercontent.com/NeruaX/General-Scripts/main/Random/NinjaRemoval.ps1 -OutFile C:\Temp\NinjaRemoval.ps1" && powershell.exe -ExecutionPolicy Bypass -file "C:\Temp\NinjaRemoval.ps1" && curl.exe --output C:\Temp\NinjaInstall.msi --url "<NinjaInstaller>" && msiexec /i C:\Temp\NinjaInstall.msi /qn
+#>
+
 $ProductsPath = "HKLM:\SOFTWARE\Classes\Installer\Products\"
 $FeaturesPath = "HKLM:\SOFTWARE\Classes\Installer\Features\"
 $UpgradesPath = "HKLM:\SOFTWARE\Classes\Installer\UpgradeCodes\"
